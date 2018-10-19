@@ -1,5 +1,10 @@
 <% include ./partials/head %>
 <% include ./partials/header %>
-
+	<ul>
+		<% for (let i = 0; i < questions.length; i++) { -%>
+			<li><a href="/questions/<%=questions[i].id%>"><%=questions[i].briefDesc%></a></li>
+		<% } -%>
+	</ul>
+	<a href="/questions/new">Add New Question</a>
 </body>
 </html>

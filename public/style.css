@@ -9,13 +9,13 @@ body {
 
 #headerLeft {
 	height: 150px;
-	width: 20%;
+	width: 40%;
 	padding: 10px;
 }
 
 #headerRight {
 	height: 150px;
-	width: 20%;
+	width: 40%;
 	display: flex;
 	justify-content: flex-end;
 	padding: 10px;
@@ -38,4 +38,24 @@ body {
 	padding: 5px;
 	border: 3px solid darkslategray;
 	border-radius: 5px;
+}
+
+#labels {
+	width: 500px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	border: 1px solid red;
+}
+
+.label {
+	width: 20%;
+	text-align: center;
+}
+
+#radio {
+	width: 500px;
+	display: flex;
+	justify-content: space-around;
+	border: 1px solid red;
 }
