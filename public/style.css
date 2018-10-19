@@ -1,0 +1,41 @@
+body {
+	background-color: lightsteelblue;
+}
+
+#header {
+	display: flex;
+	justify-content: space-between;
+}
+
+#headerLeft {
+	height: 150px;
+	width: 20%;
+	padding: 10px;
+}
+
+#headerRight {
+	height: 150px;
+	width: 20%;
+	display: flex;
+	justify-content: flex-end;
+	padding: 10px;
+}
+
+.navBar {
+	font-size: 18px;
+}
+
+.userLink {
+	padding-left: 3px;
+	padding-right: 3px;
+}
+
+#siteLogo {
+	background-color: mediumseagreen;
+	color: white;
+	font-size: 36px;
+	text-decoration: none;
+	padding: 5px;
+	border: 3px solid darkslategray;
+	border-radius: 5px;
+}

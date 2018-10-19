@@ -13,6 +13,7 @@ app.use(session({
 }))
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(methodOverride('_method'));
+app.use(express.static('public'));
 
 //Controllers
 
