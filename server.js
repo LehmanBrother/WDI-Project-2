@@ -8,6 +8,7 @@ const Article = require('./models/article');
 const Comment = require('./models/comment');
 const Question = require('./models/question');
 const User = require('./models/user');
+const Vote = require('./models/vote');
 
 const articleController = require('./controllers/article');
 const commentController = require('./controllers/comment');
@@ -30,7 +31,7 @@ app.use(express.static('public'));
 // app.use('/articles', articleController);
 // app.use('/comments', commentController);
 app.use('/questions', questionController);
-// app.use('/users', userController);
+app.use('/users', userController);
 
 //home/index route
 app.get('/', async (req, res) => {
@@ -47,6 +48,22 @@ app.get('/', async (req, res) => {
 //new question route
 app.get('/questions/new', async (req, res) => {
 	res.render('questions/new.ejs');
+})
+
+app.post('/', async (req, res) => {
+	console.log(req.body);
+	// try {
+	// 	const newVote = await Vote.create({
+	// 		//username: [req.session.username],
+	// 		value: Number(req.body.vote)
+	// 	})
+	// 	const newQuestion = await Question.create({
+			
+	// 	});
+	// } catch(err) {
+	// 	res.send(err);
+	// }
+	res.redirect('/');
 })
 
 app.listen(3000, () => {
