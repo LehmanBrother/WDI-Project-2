@@ -52,17 +52,24 @@ app.get('/questions/new', async (req, res) => {
 
 app.post('/', async (req, res) => {
 	console.log(req.body);
-	// try {
-	// 	const newVote = await Vote.create({
-	// 		//username: [req.session.username],
-	// 		value: Number(req.body.vote)
-	// 	})
-	// 	const newQuestion = await Question.create({
-			
-	// 	});
-	// } catch(err) {
-	// 	res.send(err);
-	// }
+	if(req.session.logged) {
+		try {
+			const newVote = await Vote.create({
+				username: [req.session.username],
+				value: Number(req.body.vote)
+			})
+			const newQuestion = await Question.create({
+				briefDesc: req.body.briefDesc,
+				fullDesc: req.body.fullDesc,
+				img: req.body.img,
+				username: req.session.username
+			});
+			newQuestion.votes.push(newVote.value);
+			newQuestion.save();
+		} catch(err) {
+			res.send(err);
+		}
+	}
 	res.redirect('/');
 })
 
