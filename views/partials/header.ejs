@@ -8,6 +8,14 @@
 			</a>
 		</div>
 		<div id="headerRight">
-			<a href="/" class="userLink">Active User</a> <span class="navBar">|</span> <a href="/users/login" class="userLink">Log In</a> <span class="navBar">|</span> <a href="/" class="userLink">Sign Up</a>
+			<%if(username) {%>
+				<a href="/" class="userLink">You are currently logged in as <%=username%></a> <span class="navBar">|</span><a href="/users/logout" class="userLink">Log Out</a>
+			<%} else {%>
+				<a href="/users/login" class="userLink">Log In/Sign Up</a>
+			<%}%>
 		</div>
 	</div>
+
+	<%if(message !== undefined && message.length > 0) {%>
+		<span id="message"><%=message%></span>
+	<%}%>

@@ -6,14 +6,16 @@ const bcrypt = require('bcrypt');
 //login page
 router.get('/login', (req, res) => {
 	console.log(req.session);
+	req.session.message = undefined;
 	res.render('users/login.ejs', {
+		username: req.session.username,
 		message: req.session.message
 	});
 })
 
 //register post route
 router.post('/register', async (req, res) => {
-	//will need to implement logic here to make sure username is unique
+	//will need to implement logic here to make sure username is unique...maybe already accomplished by user model, but will still need message
 	const password = req.body.password;
 	const passwordHash = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
 	console.log(passwordHash);
@@ -24,7 +26,7 @@ router.post('/register', async (req, res) => {
 	console.log(user);
 	req.session.username = req.body.username;
 	req.session.logged = true;
-	req.session.message = '';
+	req.session.message = undefined;
 	res.redirect('/');
 })
 
@@ -37,7 +39,7 @@ router.post('/login', async (req, res) => {
 			if(bcrypt.compareSync(req.body.password, foundUser.password)) {
 				req.session.username = req.body.username;
 				req.session.logged = true;
-				req.session.message = '';
+				req.session.message = undefined;
 				console.log('Login successful');
 				res.redirect('/');
 			} else {
@@ -62,7 +64,7 @@ router.get('/logout', (req, res) => {
 			res.send(err);
 		} else {
 			console.log('Logout successful');
-			res.redirect('/users/login');
+			res.redirect('/');
 		}
 	})
 })

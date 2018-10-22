@@ -8,13 +8,13 @@ body {
 }
 
 #headerLeft {
-	height: 150px;
+	height: 100px;
 	width: 40%;
 	padding: 10px;
 }
 
 #headerRight {
-	height: 150px;
+	height: 100px;
 	width: 40%;
 	display: flex;
 	justify-content: flex-end;
@@ -34,6 +34,16 @@ body {
 	background-color: mediumseagreen;
 	color: white;
 	font-size: 36px;
+	text-decoration: none;
+	padding: 5px;
+	border: 3px solid darkslategray;
+	border-radius: 5px;
+}
+
+#message {
+	background-color: mediumseagreen;
+	color: white;
+	font-size: 20px;
 	text-decoration: none;
 	padding: 5px;
 	border: 3px solid darkslategray;

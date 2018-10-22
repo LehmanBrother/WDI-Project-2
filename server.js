@@ -38,7 +38,9 @@ app.get('/', async (req, res) => {
 	try {
 		const allQuestions = await Question.find();
 		res.render('index.ejs', {
-			questions: allQuestions
+			questions: allQuestions,
+			username: req.session.username,
+			message: req.session.message
 		})
 	} catch(err) {
 		res.send(err);
@@ -47,7 +49,16 @@ app.get('/', async (req, res) => {
 
 //new question route
 app.get('/questions/new', async (req, res) => {
-	res.render('questions/new.ejs');
+	if(req.session.logged) {
+		req.session.message = undefined;
+		res.render('questions/new.ejs', {
+			username: req.session.username,
+			message: req.session.message
+		});
+	} else {
+		req.session.message = 'You must be logged in to post a question.';
+		res.redirect('/');
+	}
 })
 
 //question post route
