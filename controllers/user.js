@@ -35,7 +35,9 @@ router.post('/login', async (req, res) => {
 		console.log(foundUser);
 		if(foundUser) {
 			if(bcrypt.compareSync(req.body.password, foundUser.password)) {
+				req.session.username = req.body.username;
 				req.session.logged = true;
+				req.session.message = '';
 				console.log('Login successful');
 				res.redirect('/');
 			} else {
@@ -53,12 +55,13 @@ router.post('/login', async (req, res) => {
 	}
 })
 
-//login route
+//logout route
 router.get('/logout', (req, res) => {
 	req.session.destroy((err) => {
 		if(err) {
 			res.send(err);
 		} else {
+			console.log('Logout successful');
 			res.redirect('/users/login');
 		}
 	})

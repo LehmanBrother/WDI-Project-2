@@ -50,10 +50,12 @@ app.get('/questions/new', async (req, res) => {
 	res.render('questions/new.ejs');
 })
 
+//question post route
 app.post('/', async (req, res) => {
 	console.log(req.body);
 	if(req.session.logged) {
 		try {
+			console.log(req.session);
 			const newVote = await Vote.create({
 				username: [req.session.username],
 				value: Number(req.body.vote)
@@ -64,7 +66,7 @@ app.post('/', async (req, res) => {
 				img: req.body.img,
 				username: req.session.username
 			});
-			newQuestion.votes.push(newVote.value);
+			newQuestion.votes.push(newVote);
 			newQuestion.save();
 		} catch(err) {
 			res.send(err);
