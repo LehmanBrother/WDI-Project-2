@@ -43,21 +43,68 @@ router.post('/:index/vote', async (req, res) => {
 
 // Comment New Route
 router.get('/:index/comment', async(req, res) => {
-	const foundQuestion = await Question.findById(req.params.index)
-	res.render('comments/new.ejs', {
-		question: foundQuestion,
-		username: req.session.username,
-		message: req.session.message
+	if(req.session.logged) {
+		const foundQuestion = await Question.findById(req.params.index)
+		res.render('comments/new.ejs', {
+			question: foundQuestion,
+			username: req.session.username,
+			message: req.session.message
+		})
+	} else {
+		req.session.message = 'You must be logged in to comment.'
+	}
+	Question.findById(req.params.index, (err, foundQuestion) => {
+		res.render('questions/show.ejs', {
+			question: foundQuestion,
+			username: req.session.username,
+			message: req.session.message
+		})
 	})
 })
 
 router.get('/:index/article', async (req, res) => {
-	const foundQuestion = await Question.findById(req.params.index)
-	res.render('articles/new.ejs', {
-		question: foundQuestion,
-		username: req.session.username,
-		message: req.session.message
+	if(req.session.logged) {
+		const foundQuestion = await Question.findById(req.params.index)
+		res.render('articles/new.ejs', {
+			question: foundQuestion,
+			username: req.session.username,
+			message: req.session.message
+		})
+	} else {
+		req.session.message = 'You must be logged in to add an article.'
+	}
+	Question.findById(req.params.index, (err, foundQuestion) => {
+		res.render('questions/show.ejs', {
+			question: foundQuestion,
+			username: req.session.username,
+			message: req.session.message
+		})
 	})
+})
+
+// Article create Route
+router.post('/:index/article', async (req, res) => {
+	try {
+		const articleToAdd = {
+			title: req.body.title,
+			articleLink: req.body.article,
+			username: req.session.username
+		}
+		const questionArticle = await Article.create(articleToAdd);
+		const foundQuestion = await Question.findById(req.params.index);
+		const foundUser = await User.findOne({username: req.session.username});
+		foundQuestion.articles.push(questionArticle);
+		foundUser.articles.push(questionArticle);
+		foundQuestion.save();
+		foundUser.save();
+		res.render('questions/show.ejs', {
+			question: foundQuestion,
+			username: req.session.username,
+			message: req.session.message
+		})
+	} catch(err) {
+		res.send(err)
+	}
 })
 
 // Comment create Route

@@ -35,7 +35,7 @@
 	</div>
 	<div class="articles">
 		<% for (let i = 0; i < question.articles.length; i++) { -%>
-			<p><%=question.articles[i].body%></p>
+			<p><a href="<%=question.articles[i].articleLink%>"><%=question.articles[i].title%></a>
 		
 	<% } -%>
 	</div>

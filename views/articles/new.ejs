@@ -4,6 +4,7 @@
 		<%=question.fullDesc%>
 	</span><br>
 	<form action="/questions/<%=question.id%>/article" method="POST">
+		Article Title: <input type="text" name="title"><br>
 		Article Link: <input type="text" name="article" placeholder="add url"><br>
 		<button type="submit">Add Article</button>
 	</form>
