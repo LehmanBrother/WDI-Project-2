@@ -61,6 +61,15 @@ app.get('/questions/new', async (req, res) => {
 	}
 })
 
+// Show Route
+app.get('/questions/:index', (req, res) => {
+	Question.findById(req.params.index, (err, foundQuestion) => {
+		res.render('questions/show.ejs', {
+			question: foundQuestion
+		});
+	});
+});
+
 //question post route
 app.post('/', async (req, res) => {
 	console.log(req.body);
