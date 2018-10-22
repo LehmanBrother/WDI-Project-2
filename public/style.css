@@ -50,6 +50,21 @@ body {
 	border-radius: 5px;
 }
 
+.indexQuestion {
+	height: 50px;
+	border: 1px solid gray;
+}
+
+.indexImg {
+	height: 45px;
+	width: auto;
+}
+
+.showImg {
+	height: 200px;
+	width: auto;
+}
+
 #labels {
 	width: 500px;
 	display: flex;
