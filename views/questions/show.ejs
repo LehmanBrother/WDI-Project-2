@@ -3,21 +3,24 @@
 
 <h1><%=question.briefDesc%></h1>
 
+<h2>Vote Balance: <%=question.voteBalance%></h2>
+
 <h3><%=question.fullDesc%></h3>
 
-	<form action="/" method="POST">
-			<span class="label" for="0">Strongly Disagree</span>
-			<span class="label" for="1">Somewhat Disagree</span>
-			<span class="label" for="2">Neutral</span>
-			<span class="label" for="3">Somewhat Agree</span>
-			<span class="label" for="4">Strongly<br> Agree</span><br>
+	<form action="/questions/<%=question.id%>" method="POST">
+		<span id="labels">
+			<span class="label" for="1">Strongly Disagree</span>
+			<span class="label" for="2">Somewhat Disagree</span>
+			<span class="label" for="3">Neutral</span>
+			<span class="label" for="4">Somewhat Agree</span>
+			<span class="label" for="5">Strongly<br> Agree</span><br>
 		</span>
 		<span id="radio">
-			<input type="radio" name="vote" value="0">
 			<input type="radio" name="vote" value="1">
 			<input type="radio" name="vote" value="2">
 			<input type="radio" name="vote" value="3">
 			<input type="radio" name="vote" value="4">
+			<input type="radio" name="vote" value="5">
 		</span>
 		<button type="submit">Vote on Topic</button>
 	</form>

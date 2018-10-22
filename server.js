@@ -65,7 +65,9 @@ app.get('/questions/new', async (req, res) => {
 app.get('/questions/:index', (req, res) => {
 	Question.findById(req.params.index, (err, foundQuestion) => {
 		res.render('questions/show.ejs', {
-			question: foundQuestion
+			question: foundQuestion,
+			username: req.session.username,
+			message: req.session.message
 		});
 	});
 });

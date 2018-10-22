@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const Vote  = require('./vote');
+const Comment = require('./comment');
+const Article = require('./article');
 
 const questionSchema = new mongoose.Schema({
 	briefDesc: {
@@ -12,7 +14,10 @@ const questionSchema = new mongoose.Schema({
 		type: String,
 		required: true
 	},
-	votes: [Vote.schema]
+	voteBalance: Number,
+	votes: [Vote.schema],
+	comments: [Comment.schema],
+	articles: [Article.schema]
 });
 
 module.exports = mongoose.model('Question', questionSchema);
