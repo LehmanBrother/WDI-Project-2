@@ -2,9 +2,12 @@ const express = require('express');
 const router = express.Router();
 const Question = require('../models/question');
 const Vote = require('../models/vote');
+const Comment = require('../models/comment')
+const User = require('../models/user')
+const Article = require('../models/article')
 
 //question vote post route
-router.post('/:index', async (req, res) => {
+router.post('/:index/vote', async (req, res) => {
 	console.log(req.body);
 	if(req.session.logged) {
 		try {
@@ -37,5 +40,52 @@ router.post('/:index', async (req, res) => {
 		})
 	})
 })
+
+// Comment New Route
+router.get('/:index/comment', async(req, res) => {
+	const foundQuestion = await Question.findById(req.params.index)
+	res.render('comments/new.ejs', {
+		question: foundQuestion,
+		username: req.session.username,
+		message: req.session.message
+	})
+})
+
+router.get('/:index/article', async (req, res) => {
+	const foundQuestion = await Question.findById(req.params.index)
+	res.render('articles/new.ejs', {
+		question: foundQuestion,
+		username: req.session.username,
+		message: req.session.message
+	})
+})
+
+// Comment create Route
+router.post('/:index/comment', async (req, res, next) => {
+	console.log(req.body);
+	try {
+		const commentToAdd = {
+			body: req.body.comment,
+			username: req.session.username
+		}
+		const questionComment = await Comment.create(commentToAdd);
+		const foundQuestion = await Question.findById(req.params.index);
+		const foundUser = await User.findOne({username: req.session.username});
+		foundQuestion.comments.push(questionComment);
+		foundUser.comments.push(questionComment);
+		foundQuestion.save();
+		foundUser.save();
+		// Question.findById(req.params.index, (err, foundQuestion) => {
+			res.render('questions/show.ejs', {
+				question: foundQuestion,
+				username: req.session.username,
+				message: req.session.message
+			});
+		// });
+	} catch(err) {
+		console.log();
+		next(err);
+	}
+});
 
 module.exports = router;

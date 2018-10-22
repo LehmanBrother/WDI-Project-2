@@ -1,0 +1,9 @@
+<% include ../partials/head %>
+<% include ../partials/header %>
+	<span>
+		<%=question.fullDesc%>
+	</span><br>
+	<form action="/questions/<%=question.id%>/comment" method="POST">
+		<textarea type="text" name="comment" placeholder="Comment Here"></textarea><br>
+		<button type="submit">Create Comment</button>
+	</form>

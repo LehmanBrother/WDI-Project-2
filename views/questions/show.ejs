@@ -9,7 +9,7 @@
 
 <h3><%=question.fullDesc%></h3>
 
-	<form action="/questions/<%=question.id%>" method="POST">
+	<form action="/questions/<%=question.id%>/vote" method="POST">
 		<span id="labels">
 			<span class="label" for="1">Strongly Disagree</span>
 			<span class="label" for="2">Somewhat Disagree</span>
@@ -26,7 +26,16 @@
 		</span>
 		<button type="submit">Vote on Topic</button>
 	</form>
-	<% for (let i = 0; i < question.comments.length; i++) { -%>
-		<p><%=question.comments[i]%></p>
+	<a href="/questions/<%=question.id%>/comment">Add a Comment</a> <span class="navBar">|</span> <a href="/questions/<%=question.id%>/article">Add an Article</a>
+	<div class="comments">
+		<% for (let i = 0; i < question.comments.length; i++) { -%>
+			<p><%=question.comments[i].body%></p>
 		
 	<% } -%>
+	</div>
+	<div class="articles">
+		<% for (let i = 0; i < question.articles.length; i++) { -%>
+			<p><%=question.articles[i].body%></p>
+		
+	<% } -%>
+	</div>

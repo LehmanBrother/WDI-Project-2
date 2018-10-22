@@ -1,0 +1,9 @@
+<% include ../partials/head %>
+<% include ../partials/header %>
+	<span>
+		<%=question.fullDesc%>
+	</span><br>
+	<form action="/questions/<%=question.id%>/article" method="POST">
+		Article Link: <input type="text" name="article" placeholder="add url"><br>
+		<button type="submit">Add Article</button>
+	</form>
