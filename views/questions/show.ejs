@@ -1,0 +1,27 @@
+<% include ../partials/head %>
+<% include ../partials/header %>
+
+<h1><%=question.briefDesc%></h1>
+
+<h3><%=question.fullDesc%></h3>
+
+	<form action="/" method="POST">
+			<span class="label" for="0">Strongly Disagree</span>
+			<span class="label" for="1">Somewhat Disagree</span>
+			<span class="label" for="2">Neutral</span>
+			<span class="label" for="3">Somewhat Agree</span>
+			<span class="label" for="4">Strongly<br> Agree</span><br>
+		</span>
+		<span id="radio">
+			<input type="radio" name="vote" value="0">
+			<input type="radio" name="vote" value="1">
+			<input type="radio" name="vote" value="2">
+			<input type="radio" name="vote" value="3">
+			<input type="radio" name="vote" value="4">
+		</span>
+		<button type="submit">Vote on Topic</button>
+	</form>
+	<% for (let i = 0; i < question.comments.length; i++) { -%>
+		<p><%=question.comments[i]%></p>
+		
+	<% } -%>
