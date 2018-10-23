@@ -86,7 +86,8 @@ app.post('/', async (req, res) => {
 				briefDesc: req.body.briefDesc,
 				fullDesc: req.body.fullDesc,
 				img: req.body.img,
-				username: req.session.username
+				username: req.session.username,
+				voteBalance: newVote.value
 			});
 			newQuestion.votes.push(newVote);
 			newQuestion.save();
