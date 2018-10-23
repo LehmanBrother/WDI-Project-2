@@ -40,7 +40,7 @@ body {
 	border-radius: 5px;
 }
 
-#message {
+.buttonMed {
 	background-color: mediumseagreen;
 	color: white;
 	font-size: 20px;
@@ -70,6 +70,18 @@ body {
 	border: 1px solid red;
 }
 
+#questionTop {
+	display: inline-block;
+	color: white;
+	background-color: lightslategray;
+	border: 3px solid darkslategray;
+	border-radius: 5px;
+}
+
+#briefDesc {
+
+}
+
 .showImg {
 	height: 200px;
 	width: auto;
@@ -80,7 +92,11 @@ body {
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
-	border: 1px solid red;
+	background-color: darkorange;
+	border: 3px solid darkslategray;
+	border-bottom: none;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
 }
 
 .label {
@@ -92,5 +108,47 @@ body {
 	width: 500px;
 	display: flex;
 	justify-content: space-around;
+	background-color: chocolate;
+	border: 3px solid darkslategray;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+#commentsArticles {
+	display: flex;
+	justify-content: space-around;
+	padding: 8px;
 	border: 1px solid red;
+}
+
+#articlesDiv {
+	width: 48%;
+	background-color: lightslategray;
+	border: 3px solid darkslategray;
+	border-radius: 5px;
+}
+
+#commentsDiv {
+	width: 48%;
+	background-color: lightslategray;
+	border: 3px solid darkslategray;
+	border-radius: 5px;
+}
+
+#articleButton {
+	padding: 8px;
+}
+
+#commentButton {
+	padding: 8px;
+}
+
+#articleList {
+	width: 50%;
+	border: 1px solid orange;
+}
+
+#commentList {
+	width: 50%;
+	border: 1px solid brown;
 }

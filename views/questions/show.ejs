@@ -1,19 +1,22 @@
 <% include ../partials/head %>
 <% include ../partials/header %>
 
-<img class="showImg" src="<%=question.img%>"></img>
+	<img class="showImg" src="<%=question.img%>"></img><br>
+	
+	<div id="questionTop">
 
-<h1><%=question.briefDesc%></h1>
+		<h1 id="briefDesc"><%=question.briefDesc%></h1>
 
-<h2>Vote Balance: <%=question.voteBalance%></h2>
+		<h2>Vote Balance: <%=question.voteBalance%></h2>
 
-<h3><%=question.fullDesc%></h3>
+		<h3><%=question.fullDesc%></h3>
 
-	<%if(username===question.username) {%>
-		<form action="/questions/<%=question.id%>?_method=DELETE" method="POST">
-			<input type="submit" value="Delete Question">
-		</form>
-	<%}%>
+		<%if(username===question.username) {%>
+			<form action="/questions/<%=question.id%>?_method=DELETE" method="POST">
+				<input type="submit" value="Delete Question">
+			</form>
+		<%}%>
+	</div><br><br>
 
 	<form action="/questions/<%=question.id%>/vote" method="POST">
 		<span id="labels">
@@ -30,26 +33,41 @@
 			<input type="radio" name="vote" value="4">
 			<input type="radio" name="vote" value="5">
 		</span>
+		<br>
 		<button type="submit">Vote on Topic</button>
-	</form>
-	<a href="/questions/<%=question.id%>/comment">Add a Comment</a> <span class="navBar">|</span> <a href="/questions/<%=question.id%>/article">Add an Article</a>
-	<div class="comments">
-		<% for (let i = 0; i < question.comments.length; i++) { -%>
-			<p><%=question.comments[i].body%></p>
-			<%if(username===question.comments[i].username) {%>
-				<form action="/questions/<%=question.id%>/comment/<%=question.comments[i].id%>?_method=DELETE" method="POST">
-				<input type="submit" value="Delete Comment">
-			</form>
-			<%}%>
-	<% } -%>
+	</form><br><br>
+
+	<div id="commentsArticles">
+		<div id="articlesDiv">
+			<div id="articleButton">
+				<a href="/questions/<%=question.id%>/article" class="buttonMed">Add an Article</a>
+			</div>
+			<div id="articleList">
+				<% for (let i = 0; i < question.articles.length; i++) { -%>
+					<a href="<%=question.articles[i].articleLink%>"><%=question.articles[i].title%></a>
+					<%if(username===question.articles[i].username) {%>
+						<form action="/questions/<%=question.id%>/article/<%=question.articles[i].id%>?_method=DELETE" method="POST">
+							<input type="submit" value="Delete Article">
+						</form>
+					<%}%>
+			<% } -%>
+			</div>
+		</div>
+		<div id="commentsDiv">
+			<div id="commentButton">
+				<a href="/questions/<%=question.id%>/comment" class="buttonMed">Add a Comment</a>
+			</div>
+			<div id="commentList">
+				<% for (let i = 0; i < question.comments.length; i++) { -%>
+					<%=question.comments[i].body%>
+					<%if(username===question.comments[i].username) {%>
+						<form action="/questions/<%=question.id%>/comment/<%=question.comments[i].id%>?_method=DELETE" method="POST">
+							<input type="submit" value="Delete Comment">
+						</form>
+					<%}%>
+			<% } -%>
+			</div>
+		</div>
 	</div>
-	<div class="articles">
-		<% for (let i = 0; i < question.articles.length; i++) { -%>
-			<a href="<%=question.articles[i].articleLink%>"><%=question.articles[i].title%></a>
-			<%if(username===question.articles[i].username) {%>
-				<form action="/questions/<%=question.id%>/article/<%=question.articles[i].id%>?_method=DELETE" method="POST">
-				<input type="submit" value="Delete Article">
-			</form>
-			<%}%>
-	<% } -%>
-	</div>
+</body>
+</html>

@@ -2,8 +2,11 @@
 <% include ../partials/header %>
 	<form action="/" method="POST">
 		<input type="text" name="briefDesc" placeholder="Write a brief description of your question."><br>
+
 		<textarea name="fullDesc" placeholder="Write your full question."></textarea><br/>
+
 		<input type="text" name="img" placeholder="Paste a link to a relevant image."><br>
+		
 		<span id="labels">
 			<span class="label" for="0">Strongly Disagree</span>
 			<span class="label" for="1">Somewhat Disagree</span>
@@ -11,6 +14,7 @@
 			<span class="label" for="3">Somewhat Agree</span>
 			<span class="label" for="4">Strongly<br> Agree</span><br>
 		</span>
+
 		<span id="radio">
 			<input type="radio" name="vote" value="1">
 			<input type="radio" name="vote" value="2">
@@ -18,6 +22,7 @@
 			<input type="radio" name="vote" value="4">
 			<input type="radio" name="vote" value="5">
 		</span>
+
 		<button type="submit">Post Question</button>
 	</form>
 </body>
