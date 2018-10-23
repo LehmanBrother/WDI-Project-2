@@ -50,14 +50,24 @@ body {
 	border-radius: 5px;
 }
 
-.indexQuestion {
+.indexEntry {
+	display: flex;
 	height: 50px;
 	border: 1px solid gray;
+}
+
+.indexImgDiv {
+	width: 50px;
 }
 
 .indexImg {
 	height: 45px;
 	width: auto;
+}
+
+.indexQuestion {
+	width: 400px;
+	border: 1px solid red;
 }
 
 .showImg {
