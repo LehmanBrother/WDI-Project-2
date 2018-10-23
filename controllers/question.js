@@ -178,7 +178,8 @@ router.delete('/:index/comment/:commentIndex', async (req, res, next) => {
 		const currentQuestion = await Question.findById(req.params.index);
 		currentQuestion.comments.splice(currentQuestion.comments.findIndex((comment) => {
 			return comment.id === deletedComment.id;
-		}),1)
+		}),1);
+		currentQuestion.save();
 		res.render('questions/show.ejs', {
 			question: currentQuestion,
 			username: req.session.username,
