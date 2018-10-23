@@ -190,7 +190,24 @@ router.delete('/:index/comment/:commentIndex', async (req, res, next) => {
 	}
 })
 
-
+//article delete route
+router.delete('/:index/article/:articleIndex', async (req, res, next) => {
+	try {
+		const deletedArticle = await Article.findByIdAndDelete(req.params.articleIndex);
+		const currentQuestion = await Question.findById(req.params.index);
+		currentQuestion.articles.splice(currentQuestion.comments.findIndex((article) => {
+			return article.id === deletedArticle.id;
+		}),1);
+		currentQuestion.save();
+		res.render('questions/show.ejs', {
+			question: currentQuestion,
+			username: req.session.username,
+			message: req.session.message
+		});
+	} catch(err) {
+		next(err);
+	}
+})
 
 
 

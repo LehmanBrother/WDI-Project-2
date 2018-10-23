@@ -46,7 +46,7 @@
 	<div class="articles">
 		<% for (let i = 0; i < question.articles.length; i++) { -%>
 			<a href="<%=question.articles[i].articleLink%>"><%=question.articles[i].title%></a>
-			<%if(username===question.comments[i].username) {%>
+			<%if(username===question.articles[i].username) {%>
 				<form action="/questions/<%=question.id%>/article/<%=question.articles[i].id%>?_method=DELETE" method="POST">
 				<input type="submit" value="Delete Article">
 			</form>
