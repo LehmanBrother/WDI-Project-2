@@ -193,8 +193,12 @@ router.delete('/:index/comment/:commentIndex', async (req, res, next) => {
 //article delete route
 router.delete('/:index/article/:articleIndex', async (req, res, next) => {
 	try {
+		console.log(req.params.index + ' <~~ This is req.params.index');
+		console.log(req.params.articleIndex + ' <~~ This is req.params.articleIndex');
 		const deletedArticle = await Article.findByIdAndDelete(req.params.articleIndex);
+		console.log(deletedArticle + ' <~~~ deletedArticle');
 		const currentQuestion = await Question.findById(req.params.index);
+		console.log(currentQuestion + ' <~~ currentQuestion');
 		currentQuestion.articles.splice(currentQuestion.comments.findIndex((article) => {
 			return article.id === deletedArticle.id;
 		}),1);
@@ -206,6 +210,99 @@ router.delete('/:index/article/:articleIndex', async (req, res, next) => {
 		});
 	} catch(err) {
 		next(err);
+	}
+})
+
+// Comment Edit route
+router.get('/:index/comment/:commentIndex/edit', async (req, res) => {
+	if(req.session.logged) {
+		try{
+			const foundQuestion = await Question.findById(req.params.index);
+			const commentToEdit = await Comment.findById(req.params.commentIndex);
+			res.render('comments/edit.ejs', {
+				comment: commentToEdit,
+				question: foundQuestion,
+				username: req.session.username,
+				message: req.session.message
+			})
+
+		} catch(err) {
+			res.send(err)
+		}
+	} else {
+		req.session.message = 'Please log in to edit your comment'
+	}
+})
+
+// Article Edit route
+router.get('/:index/article/:articleIndex/edit', async (req, res) => {
+	if(req.session.logged) {
+		try{
+			const foundQuestion = await Question.findById(req.params.index);
+			const articleToEdit = await Article.findById(req.params.articleIndex);
+			res.render('articles/edit.ejs', {
+				article: articleToEdit,
+				question: foundQuestion,
+				username: req.session.username,
+				message: req.session.message
+			})
+		} catch(err) {
+			res.send(err)
+		}
+	} else {
+		req.session.message = 'Please log in to edit your comment'
+	}
+})
+
+// Comment Put Route
+router.put('/:index/comment/:commentIndex', async (req, res) => {
+	try {
+		const updatedComment = {
+			body: req.body.comment,
+			username: req.session.username
+		}
+		const commentToUpdate = await Comment.findByIdAndUpdate(req.params.commentIndex, updatedComment, {new:true});
+		commentToUpdate.save()
+		const foundQuestion = await Question.findById(req.params.index);
+		const index = foundQuestion.comments.findIndex((comment) => {
+			return comment.id === commentToUpdate.id
+		})
+		console.log(index);
+		foundQuestion.comments[index] = commentToUpdate;
+		foundQuestion.save();
+		res.render('questions/show.ejs', {
+			question: foundQuestion,
+			username: req.session.username,
+			message: req.session.message
+		});
+	} catch(err) {
+		res.send(err)
+	}
+})
+// Article Put Route
+router.put('/:index/article/:articleIndex', async (req, res) => {
+	try {
+		const updatedArticle = {
+			title: req.body.title,
+			articleLink: req.body.article,
+			username: req.session.username
+		}
+		const articleToUpdate = await Article.findByIdAndUpdate(req.params.articleIndex, updatedArticle, {new: true});
+		articleToUpdate.save();
+		const foundQuestion = await Question.findById(req.params.index);
+		const index = foundQuestion.articles.findIndex((article) => {
+			return article.id === articleToUpdate.id
+		})
+		console.log(index + ' <~~ Index number');
+		foundQuestion.articles[index] = articleToUpdate;
+		foundQuestion.save();
+		res.render('questions/show.ejs', {
+			question: foundQuestion,
+			username: req.session.username,
+			message: req.session.message
+		});
+	} catch(err) {
+		res.send(err)
 	}
 })
 
