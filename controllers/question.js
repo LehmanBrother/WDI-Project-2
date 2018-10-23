@@ -167,9 +167,34 @@ router.post('/:index/comment', async (req, res, next) => {
 			message: req.session.message
 		});
 	} catch(err) {
-		console.log();
 		next(err);
 	}
 });
+
+//comment delete route
+router.delete('/:index/comment/:commentIndex', async (req, res, next) => {
+	try {
+		const deletedComment = await Comment.findByIdAndDelete(req.params.commentIndex);
+		const currentQuestion = await Question.findById(req.params.index);
+		currentQuestion.comments.splice(currentQuestion.comments.findIndex((comment) => {
+			return comment.id === deletedComment.id;
+		}),1)
+		res.render('questions/show.ejs', {
+			question: currentQuestion,
+			username: req.session.username,
+			message: req.session.message
+		});
+	} catch(err) {
+		next(err);
+	}
+})
+
+
+
+
+
+
+
+
 
 module.exports = router;
