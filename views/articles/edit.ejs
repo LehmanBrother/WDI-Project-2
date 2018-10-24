@@ -1,10 +1,15 @@
 <% include ../partials/head %>
 <% include ../partials/header %>
-	<span>
-		<%=question.fullDesc%>
-	</span><br>
-	<form action="/questions/<%=question.id%>/article/<%=article.id%>?_method=PUT" method="POST">
-		Article Title: <input type="text" name="title" value="<%=article.title%>"><br>
-		Article Link: <input type="text" name="article" value="<%=article.articleLink%>"><br>
-		<button type="submit">Edit Article</button>
-	</form>
+	<div id="editMain">
+		<div id="editControl">
+			<span>
+				<%=question.briefDesc%><br><br>
+				<%=question.fullDesc%><br>
+			</span><br>
+			<form action="/questions/<%=question.id%>/article/<%=article.id%>?_method=PUT" method="POST">
+				Article Title: <input type="text" name="title" value="<%=article.title%>"><br><br>
+				Article Link: <input type="text" name="article" value="<%=article.articleLink%>"><br><br>
+				<button type="submit">Edit Article</button>
+			</form>
+		</div>
+	</div>

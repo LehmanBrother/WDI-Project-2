@@ -70,21 +70,28 @@ body {
 	border: 1px solid red;
 }
 
+#showMain {
+	text-align: center;
+}
+
 #questionTop {
 	display: inline-block;
 	color: white;
 	background-color: lightslategray;
+	padding: 0px 15px 10px 15px;
 	border: 3px solid darkslategray;
 	border-radius: 5px;
-}
-
-#briefDesc {
-
 }
 
 .showImg {
 	height: 200px;
 	width: auto;
+	border: 3px solid darkslategray;
+	border-radius: 5px;
+}
+
+#voteForm {
+	display: inline-block;
 }
 
 #labels {
@@ -118,12 +125,12 @@ body {
 	display: flex;
 	justify-content: space-around;
 	padding: 8px;
-	border: 1px solid red;
 }
 
 #articlesDiv {
 	width: 48%;
 	background-color: lightslategray;
+	padding: 2px;
 	border: 3px solid darkslategray;
 	border-radius: 5px;
 }
@@ -131,6 +138,7 @@ body {
 #commentsDiv {
 	width: 48%;
 	background-color: lightslategray;
+	padding: 2px;
 	border: 3px solid darkslategray;
 	border-radius: 5px;
 }
@@ -143,12 +151,53 @@ body {
 	padding: 8px;
 }
 
-#articleList {
-	width: 50%;
-	border: 1px solid orange;
+.articleDiv {
+	height: 50px;
+	display: flex;
+	justify-content: space-between;
+	background-color: lightgray;
+	padding: 2px;
+	border: 2px solid darkslategray;
+	border-radius: 2px;
+	margin: 3px 3px 0px 3px;
 }
 
-#commentList {
-	width: 50%;
-	border: 1px solid brown;
+.commentDiv {
+	height: 50px;
+	display: flex;
+	justify-content: space-between;
+	background-color: lightgray;
+	padding: 2px;
+	border: 2px solid darkslategray;
+	border-radius: 2px;
+	margin: 3px 3px 0px 3px;
+}
+
+.article {
+	display: inline-block;
+	justify-content: flex-start;
+}
+
+.comment {
+	display: inline-block;
+	justify-content: flex-start;
+}
+
+.editDelete {
+	width: 30%;
+	text-align: right;
+}
+
+#editMain {
+	text-align: center;
+}
+
+#editControl {
+	display: inline-block;
+	text-align: center;
+	color: white;
+	background-color: lightslategray;
+	padding: 10px 15px 10px 15px;
+	border: 3px solid darkslategray;
+	border-radius: 5px;
 }
