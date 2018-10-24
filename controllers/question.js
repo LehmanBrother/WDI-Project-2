@@ -45,35 +45,62 @@ router.delete('/:index', async (req, res) => {
 })
 
 //question vote post route
-router.post('/:index/vote', async (req, res) => {
+router.post('/:index/vote', async (req, res, next) => {
 	console.log(req.body);
-	if(req.session.logged) {
-		try {
+	try {
+		if(req.session.logged) {
+			console.log('logged__________');
 			const currentQuestion = await Question.findById(req.params.index);
-			const newVote = await Vote.create({
-				username: [req.session.username],
-				value: Number(req.body.vote)
-			});
-			currentQuestion.votes.push(newVote);
-			const voteCount = currentQuestion.votes.length;
-			let voteSum = 0;
-			for(let i = 0; i < currentQuestion.votes.length; i++) {
-				voteSum += currentQuestion.votes[i].value;
-			}
-			currentQuestion.voteBalance = Math.round(100*voteSum/voteCount)/100;
+			let userCanVote = true;
 			console.log(currentQuestion.votes);
-			console.log(currentQuestion.voteBalance);
-			await currentQuestion.save();
+			for(let i = 0; i < currentQuestion.votes.length; i++) {
+				if(currentQuestion.votes[i].username === req.session.username) {
+					userCanVote = false;
+					break;
+				}
+			}
+			if(userCanVote) {
+				console.log('canVote________');
+				const newVote = await Vote.create({
+					username: [req.session.username],
+					value: Number(req.body.vote)
+				});
+				currentQuestion.votes.push(newVote);
+				const voteCount = currentQuestion.votes.length;
+				let voteSum = 0;
+				for(let i = 0; i < currentQuestion.votes.length; i++) {
+					voteSum += currentQuestion.votes[i].value;
+				}
+				currentQuestion.voteBalance = Math.round(100*voteSum/voteCount)/100;
+				console.log(currentQuestion.votes);
+				console.log(currentQuestion.voteBalance);
+				await currentQuestion.save();
+				res.render('questions/show.ejs', {
+					question: currentQuestion,
+					username: req.session.username,
+					message: req.session.message
+				})
+			} else {
+				console.log('alreadyvoted_______');
+				req.session.message = 'You have already voted on this question'
+				res.render('questions/show.ejs', {
+					question: currentQuestion,
+					username: req.session.username,
+					message: req.session.message
+				})
+			}
+		} else {
+			console.log('notlogged________');
+			const currentQuestion = await Question.findById(req.params.index);
+			req.session.message = 'You must be logged in to vote'
 			res.render('questions/show.ejs', {
 				question: currentQuestion,
 				username: req.session.username,
 				message: req.session.message
 			})
-		} catch(err) {
-			res.send(err);
 		}
-	} else {
-		req.session.message = 'You must be logged in to vote.'
+	} catch(err) {
+		next(err);
 	}
 })
 
@@ -197,7 +224,7 @@ router.delete('/:index/article/:articleIndex', async (req, res, next) => {
 		console.log(deletedArticle + ' <~~~ deletedArticle');
 		const currentQuestion = await Question.findById(req.params.index);
 		console.log(currentQuestion + ' <~~ currentQuestion');
-		currentQuestion.articles.splice(currentQuestion.comments.findIndex((article) => {
+		currentQuestion.articles.splice(currentQuestion.articles.findIndex((article) => {
 			return article.id === deletedArticle.id;
 		}),1);
 		currentQuestion.save();
