@@ -36,6 +36,7 @@ app.use('/users', userController);
 //home/index route
 app.get('/', async (req, res) => {
 	try {
+		req.session.message = undefined;
 		const allQuestions = await Question.find();
 		res.render('index.ejs', {
 			questions: allQuestions,
@@ -57,7 +58,12 @@ app.get('/questions/new', async (req, res) => {
 		});
 	} else {
 		req.session.message = 'You must be logged in to post a question.';
-		res.redirect('/');
+		const allQuestions = await Question.find();
+		res.render('index.ejs', {
+			questions: allQuestions,
+			username: req.session.username,
+			message: req.session.message
+		});
 	}
 })
 

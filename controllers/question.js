@@ -49,7 +49,6 @@ router.post('/:index/vote', async (req, res, next) => {
 	console.log(req.body);
 	try {
 		if(req.session.logged) {
-			console.log('logged__________');
 			const currentQuestion = await Question.findById(req.params.index);
 			let userCanVote = true;
 			console.log(currentQuestion.votes);
@@ -60,7 +59,6 @@ router.post('/:index/vote', async (req, res, next) => {
 				}
 			}
 			if(userCanVote) {
-				console.log('canVote________');
 				const newVote = await Vote.create({
 					username: [req.session.username],
 					value: Number(req.body.vote)
@@ -81,7 +79,6 @@ router.post('/:index/vote', async (req, res, next) => {
 					message: req.session.message
 				})
 			} else {
-				console.log('alreadyvoted_______');
 				req.session.message = 'You have already voted on this question'
 				res.render('questions/show.ejs', {
 					question: currentQuestion,
@@ -90,7 +87,6 @@ router.post('/:index/vote', async (req, res, next) => {
 				})
 			}
 		} else {
-			console.log('notlogged________');
 			const currentQuestion = await Question.findById(req.params.index);
 			req.session.message = 'You must be logged in to vote'
 			res.render('questions/show.ejs', {
