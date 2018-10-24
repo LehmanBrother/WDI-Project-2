@@ -91,11 +91,11 @@ app.post('/', async (req, res) => {
 			});
 			newQuestion.votes.push(newVote);
 			newQuestion.save();
+			res.redirect('/');
 		} catch(err) {
 			res.send(err);
 		}
 	}
-	res.redirect('/');
 })
 
 app.listen(3000, () => {

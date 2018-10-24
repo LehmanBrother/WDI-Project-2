@@ -63,20 +63,18 @@ router.post('/:index/vote', async (req, res) => {
 			currentQuestion.voteBalance = Math.round(100*voteSum/voteCount)/100;
 			console.log(currentQuestion.votes);
 			console.log(currentQuestion.voteBalance);
-			currentQuestion.save();
+			await currentQuestion.save();
+			res.render('questions/show.ejs', {
+				question: currentQuestion,
+				username: req.session.username,
+				message: req.session.message
+			})
 		} catch(err) {
 			res.send(err);
 		}
 	} else {
 		req.session.message = 'You must be logged in to vote.'
 	}
-	Question.findById(req.params.index, (err, foundQuestion) => {
-		res.render('questions/show.ejs', {
-			question: foundQuestion,
-			username: req.session.username,
-			message: req.session.message
-		})
-	})
 })
 
 // Comment New Route

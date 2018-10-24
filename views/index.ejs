@@ -1,24 +1,25 @@
 <% include ./partials/head %>
 <% include ./partials/header %>
 	
-
-	<% for (let i = 0; i < questions.length; i++) { -%>
-		<div class="indexEntry">
-			<div class="indexImgDiv">
-				<img class="indexImg" src="<%=questions[i].img%>">
+	<div id="indexMain">
+		<% for (let i = 0; i < questions.length; i++) { -%>
+			<div class="indexEntry">
+				<div class="indexImgDiv">
+					<img class="indexImg" src="<%=questions[i].img%>">
+				</div>
+				<div class="indexQuestion">
+					<a href="/questions/<%=questions[i].id%>"><%=questions[i].briefDesc%></a></li>
+				</div>
+				<div class="indexVoteDiv">
+					<%if(questions[i].voteBalance) {%>
+						Vote Balance: <%=questions[i].voteBalance%>
+					<%} else {%>
+						No Votes Yet
+					<%}%>
+				</div>
 			</div>
-			<div class="indexQuestion">
-				<a href="/questions/<%=questions[i].id%>"><%=questions[i].briefDesc%></a></li>
-			</div>
-			<div class="indexVoteDiv">
-				<%if(questions[i].voteBalance) {%>
-					Vote Balance: <%=questions[i].voteBalance%>
-				<%} else {%>
-					No Votes Yet
-				<%}%>
-			</div>
-		</div>
-	<% } -%>
+		<% } -%>
+	</div>
 	<br>
 	<br>
 	<a href="/questions/new" class="buttonMed">

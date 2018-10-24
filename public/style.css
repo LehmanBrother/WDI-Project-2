@@ -50,24 +50,42 @@ body {
 	border-radius: 5px;
 }
 
+#indexMain {
+	background-color: lightslategray;
+	padding: 2px;
+	border: 3px solid darkslategray;
+	border-radius: 5px;
+}
+
 .indexEntry {
 	display: flex;
 	height: 50px;
-	border: 1px solid gray;
+	background-color: lightgray;
+	border-radius: 2px;
+	margin: 3px 3px 0px 3px;
 }
 
 .indexImgDiv {
-	width: 150px;
+	flex-basis: 17%;
+	padding: 3px;
+	border: 2px solid darkslategray;
 }
 
 .indexImg {
-	height: 45px;
+	height: 40px;
 	width: auto;
 }
 
 .indexQuestion {
-	width: 400px;
-	border: 1px solid red;
+	flex-basis: 66%;
+	padding: 5px;
+	border: 2px solid darkslategray;
+}
+
+.indexVoteDiv {
+	flex-basis: 17%;
+	padding: 5px;
+	border: 2px solid darkslategray;
 }
 
 #showMain {
