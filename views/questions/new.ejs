@@ -1,29 +1,33 @@
 <% include ../partials/head %>
 <% include ../partials/header %>
-	<form action="/" method="POST">
-		<input type="text" name="briefDesc" placeholder="Write a brief description of your question."><br>
+	<div id="editMain">
+		<div id="editControl">
+			<form action="/" method="POST">
+				<input type="text" name="briefDesc" size="40" placeholder="Write a brief description of your assertion."><br><br>
 
-		<textarea name="fullDesc" placeholder="Write your full question."></textarea><br/>
+				<textarea name="fullDesc" rows="5" cols="50" placeholder="Write your full assertion."></textarea><br/><br>
 
-		<input type="text" name="img" placeholder="Paste a link to a relevant image."><br>
-		
-		<span id="labels">
-			<span class="label" for="0">Strongly Disagree</span>
-			<span class="label" for="1">Somewhat Disagree</span>
-			<span class="label" for="2">Neutral</span>
-			<span class="label" for="3">Somewhat Agree</span>
-			<span class="label" for="4">Strongly<br> Agree</span><br>
-		</span>
+				<input type="text" name="img" size="30" placeholder="Paste a link to a relevant image."><br><br>
+				
+				<span id="labels">
+					<span class="label" for="0">Strongly Disagree</span>
+					<span class="label" for="1">Somewhat Disagree</span>
+					<span class="label" for="2">Neutral</span>
+					<span class="label" for="3">Somewhat Agree</span>
+					<span class="label" for="4">Strongly<br> Agree</span><br>
+				</span>
 
-		<span id="radio">
-			<input type="radio" name="vote" value="1">
-			<input type="radio" name="vote" value="2">
-			<input type="radio" name="vote" value="3">
-			<input type="radio" name="vote" value="4">
-			<input type="radio" name="vote" value="5">
-		</span>
-
-		<button type="submit">Post Question</button>
-	</form>
+				<span id="radio">
+					<input type="radio" name="vote" value="1">
+					<input type="radio" name="vote" value="2">
+					<input type="radio" name="vote" value="3">
+					<input type="radio" name="vote" value="4">
+					<input type="radio" name="vote" value="5">
+				</span>
+				<br>
+				<button type="submit">Post Assertion</button>
+			</form>	
+		</div>
+	</div>
 </body>
 </html>
