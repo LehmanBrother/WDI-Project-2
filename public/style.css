@@ -223,3 +223,11 @@ body {
 	border: 3px solid darkslategray;
 	border-radius: 5px;
 }
+
+.chartControl {
+	text-align: center;
+}
+.chartContainer {
+	height: 200px;
+	width: 200px;
+}

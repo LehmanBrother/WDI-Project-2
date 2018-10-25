@@ -98,27 +98,15 @@ router.post('/:index/vote', async (req, res, next) => {
 				console.log(currentQuestion.voteBalance);
 				console.log(currentQuestion.voteControversy);
 				await currentQuestion.save();
-				res.render('questions/show.ejs', {
-					question: currentQuestion,
-					username: req.session.username,
-					message: req.session.message
-				})
+				res.redirect('/questions/' + req.params.index)
 			} else {
 				req.session.message = 'You have already voted on this question'
-				res.render('questions/show.ejs', {
-					question: currentQuestion,
-					username: req.session.username,
-					message: req.session.message
-				})
+				res.redirect('/questions/' + req.params.index)
 			}
 		} else {
 			const currentQuestion = await Question.findById(req.params.index);
 			req.session.message = 'You must be logged in to vote'
-			res.render('questions/show.ejs', {
-				question: currentQuestion,
-				username: req.session.username,
-				message: req.session.message
-			})
+			res.redirect('/questions/' + req.params.index)
 		}
 	} catch(err) {
 		next(err);
@@ -137,13 +125,7 @@ router.get('/:index/comment', async(req, res) => {
 	} else {
 		req.session.message = 'You must be logged in to comment.'
 	}
-	Question.findById(req.params.index, (err, foundQuestion) => {
-		res.render('questions/show.ejs', {
-			question: foundQuestion,
-			username: req.session.username,
-			message: req.session.message
-		})
-	})
+	res.redirect('/questions/' + req.params.index)
 })
 
 //article show route
@@ -158,13 +140,7 @@ router.get('/:index/article', async (req, res) => {
 	} else {
 		req.session.message = 'You must be logged in to add an article.'
 	}
-	Question.findById(req.params.index, (err, foundQuestion) => {
-		res.render('questions/show.ejs', {
-			question: foundQuestion,
-			username: req.session.username,
-			message: req.session.message
-		})
-	})
+	res.redirect('/questions/' + req.params.index)
 })
 
 // Article post Route
@@ -182,11 +158,7 @@ router.post('/:index/article', async (req, res) => {
 		foundUser.articles.push(questionArticle);
 		foundQuestion.save();
 		foundUser.save();
-		res.render('questions/show.ejs', {
-			question: foundQuestion,
-			username: req.session.username,
-			message: req.session.message
-		})
+		res.redirect('/questions/' + req.params.index)
 	} catch(err) {
 		res.send(err)
 	}
@@ -207,11 +179,7 @@ router.post('/:index/comment', async (req, res, next) => {
 		foundUser.comments.push(questionComment);
 		foundQuestion.save();
 		foundUser.save();
-		res.render('questions/show.ejs', {
-			question: foundQuestion,
-			username: req.session.username,
-			message: req.session.message
-		});
+		res.redirect('/questions/' + req.params.index)
 	} catch(err) {
 		next(err);
 	}
@@ -226,11 +194,7 @@ router.delete('/:index/comment/:commentIndex', async (req, res, next) => {
 			return comment.id === deletedComment.id;
 		}),1);
 		currentQuestion.save();
-		res.render('questions/show.ejs', {
-			question: currentQuestion,
-			username: req.session.username,
-			message: req.session.message
-		});
+		res.redirect('/questions/' + req.params.index)
 	} catch(err) {
 		next(err);
 	}
@@ -249,11 +213,7 @@ router.delete('/:index/article/:articleIndex', async (req, res, next) => {
 			return article.id === deletedArticle.id;
 		}),1);
 		currentQuestion.save();
-		res.render('questions/show.ejs', {
-			question: currentQuestion,
-			username: req.session.username,
-			message: req.session.message
-		});
+		res.redirect('/questions/' + req.params.index)
 	} catch(err) {
 		next(err);
 	}
@@ -320,11 +280,7 @@ router.put('/:index/comment/:commentIndex', async (req, res, next) => {
 			return comment.id === commentToUpdate.id;
 		}),1,commentToUpdate);
 		foundUser.save();
-		res.render('questions/show.ejs', {
-			question: foundQuestion,
-			username: req.session.username,
-			message: req.session.message
-		});
+		res.redirect('/questions/' + req.params.index)
 	} catch(err) {
 		next(err)
 	}
@@ -350,11 +306,7 @@ router.put('/:index/article/:articleIndex', async (req, res, next) => {
 			return article.id === articleToUpdate.id;
 		}),1,articleToUpdate);
 		foundUser.save();
-		res.render('questions/show.ejs', {
-			question: foundQuestion,
-			username: req.session.username,
-			message: req.session.message
-		});
+		res.redirect('/questions/' + req.params.index)
 	} catch(err) {
 		next(err)
 	}

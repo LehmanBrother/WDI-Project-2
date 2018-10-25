@@ -111,14 +111,38 @@ app.get('/questions/new', async (req, res) => {
 })
 
 // Show Route
-app.get('/questions/:index', (req, res) => {
-	Question.findById(req.params.index, (err, foundQuestion) => {
+app.get('/questions/:index', async (req, res) => {
+	try {
+		foundQuestion = await Question.findById(req.params.index);
+		foundVotes = foundQuestion.votes;
+		let strongDis = 0;
+		let somewhatDis = 0;
+		let neutral = 0;
+		let somewhatA = 0;
+		let strongA = 0;
+		for(let i = 0; i < foundVotes.length; i++){
+			if(foundVotes[i].value === 1){
+				strongDis += 1
+			} else if(foundVotes[i].value === 2) {
+				somewhatDis += 1
+			} else if(foundVotes[i].value === 3) {
+				neutral += 1
+			} else if (foundVotes[i].value === 4) {
+				somewhatA += 1
+			} else if(foundVotes[i].value === 5) {
+				strongA += 1
+			}
+		}
+		const voteValues = [strongDis, somewhatDis, neutral, somewhatA, strongA]
 		res.render('questions/show.ejs', {
 			question: foundQuestion,
+			votes: voteValues,
 			username: req.session.username,
 			message: req.session.message
-		});
-	});
+		});	
+	} catch(err) {
+		console.log(err);
+	}
 });
 
 //question post route
