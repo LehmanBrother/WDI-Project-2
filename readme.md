@@ -8,6 +8,10 @@
 ![Imgur](https://i.imgur.com/UAsQ2Sa.png)
 
 ### Actual Website ###
+![Imgur](https://i.imgur.com/O7F19b1.png)
+![Imgur](https://i.imgur.com/VP3vFLi.png)
+![Imgur](https://i.imgur.com/Y8YKIHT.png)
+![Imgur](https://i.imgur.com/qOm2fuH.png)
 
 ## MVP: ##
 
