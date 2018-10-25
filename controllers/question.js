@@ -301,34 +301,39 @@ router.get('/:index/article/:articleIndex/edit', async (req, res) => {
 })
 
 // Comment Put Route
-router.put('/:index/comment/:commentIndex', async (req, res) => {
+router.put('/:index/comment/:commentIndex', async (req, res, next) => {
 	try {
 		const updatedComment = {
+			_id: req.params.commentIndex,
 			body: req.body.comment,
 			username: req.session.username
 		}
 		const commentToUpdate = await Comment.findByIdAndUpdate(req.params.commentIndex, updatedComment, {new:true});
-		commentToUpdate.save()
+		commentToUpdate.save();
 		const foundQuestion = await Question.findById(req.params.index);
-		const index = foundQuestion.comments.findIndex((comment) => {
-			return comment.id === commentToUpdate.id
-		})
-		console.log(index);
-		foundQuestion.comments[index] = commentToUpdate;
+		foundQuestion.comments.splice(foundQuestion.comments.findIndex((comment) => {
+			return comment.id === commentToUpdate.id;
+		}),1,commentToUpdate);
 		foundQuestion.save();
+		const foundUser = await User.findOne({username: req.session.username});
+		foundUser.comments.splice(foundUser.comments.findIndex((comment) => {
+			return comment.id === commentToUpdate.id;
+		}),1,commentToUpdate);
+		foundUser.save();
 		res.render('questions/show.ejs', {
 			question: foundQuestion,
 			username: req.session.username,
 			message: req.session.message
 		});
 	} catch(err) {
-		res.send(err)
+		next(err)
 	}
 })
 // Article Put Route
-router.put('/:index/article/:articleIndex', async (req, res) => {
+router.put('/:index/article/:articleIndex', async (req, res, next) => {
 	try {
 		const updatedArticle = {
+			_id: req.params.articleIndex,
 			title: req.body.title,
 			articleLink: req.body.article,
 			username: req.session.username
@@ -336,19 +341,22 @@ router.put('/:index/article/:articleIndex', async (req, res) => {
 		const articleToUpdate = await Article.findByIdAndUpdate(req.params.articleIndex, updatedArticle, {new: true});
 		articleToUpdate.save();
 		const foundQuestion = await Question.findById(req.params.index);
-		const index = foundQuestion.articles.findIndex((article) => {
-			return article.id === articleToUpdate.id
-		})
-		console.log(index + ' <~~ Index number');
-		foundQuestion.articles[index] = articleToUpdate;
+		foundQuestion.articles.splice(foundQuestion.articles.findIndex((article) => {
+			return article.id === articleToUpdate.id;
+		}),1,articleToUpdate);
 		foundQuestion.save();
+		const foundUser = await User.findOne({username: req.session.username});
+		foundUser.articles.splice(foundUser.articles.findIndex((article) => {
+			return article.id === articleToUpdate.id;
+		}),1,articleToUpdate);
+		foundUser.save();
 		res.render('questions/show.ejs', {
 			question: foundQuestion,
 			username: req.session.username,
 			message: req.session.message
 		});
 	} catch(err) {
-		res.send(err)
+		next(err)
 	}
 })
 
