@@ -1,11 +1,11 @@
 # Website Name #
 
 ##### Original Wire Frame #####
-![Imgur](https://i.imgur.com/z0eiVNV.png)
-![Imgur](https://i.imgur.com/X7n0SpY.png)
-![Imgur](https://i.imgur.com/tSA5Ztw.png)
-![Imgur](https://i.imgur.com/FeLBmh4.png)
-![Imgur](https://i.imgur.com/IuFdJqd.png)
+![Imgur](https://i.imgur.com/KJkH9PT.png)
+![Imgur](https://i.imgur.com/dQGmyT8.png)
+![Imgur](https://i.imgur.com/wjsllXh.png)
+![Imgur](https://i.imgur.com/T0pPU6A.png)
+![Imgur](https://i.imgur.com/UAsQ2Sa.png)
 
 ### Actual Website ###
 
