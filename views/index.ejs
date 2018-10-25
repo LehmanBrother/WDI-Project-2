@@ -3,6 +3,14 @@
 	<%if(message) {%>
 		<br><br><br>
 	<%}%>
+	<div id="sortSelect">
+		<select onchange="location=this.options[this.selectedIndex].value;">
+			<option>Sort questions:</option>
+			<option value="/new">New</option>
+			<option value="/popular">Popular</option>
+			<option value="/controversial">Controversial</option>
+		</select>
+	</div><br>
 	<div id="indexMain">
 		<% for (let i = 0; i < questions.length; i++) { -%>
 			<div class="indexEntry">

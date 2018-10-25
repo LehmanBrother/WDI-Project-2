@@ -50,6 +50,10 @@ body {
 	border-radius: 5px;
 }
 
+#sortSelect {
+	text-align: right;
+}
+
 #indexMain {
 	background-color: lightslategray;
 	padding: 2px;
