@@ -1,7 +1,7 @@
 # Website Name 
-
-## Original Wire Frame
 ___
+## Original Wire Frame
+
 ###### Home Page:
 ![Imgur](https://i.imgur.com/KJkH9PT.png)
 ###### Question/Issue Show Page:
@@ -12,9 +12,9 @@ ___
 ![Imgur](https://i.imgur.com/T0pPU6A.png)
 ###### Article Creation:
 ![Imgur](https://i.imgur.com/UAsQ2Sa.png)
-
-## Actual Website
 ___
+## Actual Website
+
 ###### Home Page:
 ![Imgur](https://i.imgur.com/O7F19b1.png)
 ###### Question/Issue Show Page:
@@ -26,12 +26,13 @@ ___
 ###### Article Creation:
 ![Imgur](https://i.imgur.com/qOm2fuH.png)
 
+___
 ## MVP: ##
-___
-### User enters at home page; can sign up/log in, view list of questions.
 
-### If logged in: 
+### User enters at home page; can sign up/log in, view list of questions.
 ___
+### If logged in: 
+
 #### Can Do:
 
 ##### Click and view any question/issue that has been posted
@@ -53,7 +54,7 @@ ___
 
 
 #### Can't Do:
-___
+
 ##### Cannot delete a question that they did not post
 
 ##### Cannot delete a comment that they did not post
@@ -62,14 +63,13 @@ ___
 
 ##### Cannot vote more than once on a question/issue post 
 
-
-#### -Visualization
 ___
+#### -Visualization
+
 ##### Vote balance (an average of all vote values from 1 to 5 that are specific to the question/issue)
 
-
-## Post-MVP: ##
 ___
+## Post-MVP: ##
 
 ##### Sort home page articles by new/popular/controversial (completed!)
 
