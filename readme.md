@@ -1,24 +1,34 @@
+# Website Name #
 
-MVP:
+##### Original Wire Frame #####
+![Imgur](https://i.imgur.com/KJkH9PT.png)
+![Imgur](https://i.imgur.com/dQGmyT8.png)
+![Imgur](https://i.imgur.com/wjsllXh.png)
+![Imgur](https://i.imgur.com/T0pPU6A.png)
+![Imgur](https://i.imgur.com/UAsQ2Sa.png)
 
--User enters at home page; can sign up/log in, view list of questions
+### Actual Website ###
+
+## MVP: ##
+
+#### -User enters at home page; can sign up/log in, view list of questions
 	-If logged in, they can add a question
 		-Description
 		-Category (e.g. election, ballot q, general issue)
 		-Can delete question if below 5 votes
 		-Can edit question if no votes
-		-Image
+		-Image 
 
--User can click on any question to go to that question's page; once on page, if logged in, they can:
+#### -User can click on any question to go to that question's page; once on page, if logged in, they can:
 	-Vote on question
 	-Add comment (takes them to comment creation page)
 	-Add article (takes them to article post page)
 	-Delete their own comments and articles
 
--Visualization?
+####-Visualization
 Vote balance
 
-Post-MVP:
+## Post-MVP: ##
 -Sort home page articles by new/popular/controversial
 -User show page w/their questions, comments, articles
 -Users need reputation to...do stuff?
