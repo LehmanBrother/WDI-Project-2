@@ -18,11 +18,11 @@
 #### User enters at home page; can sign up/log in, view list of questions.
 #### If logged in: 
 ##### Add a question.
-###### Description.
-###### Category (e.g. election, ballot q, general issue).
-###### Can delete question if below 5 votes.
-###### Can edit question if no votes.
-###### Image .
+##### Description.
+##### Category (e.g. election, ballot q, general issue).
+##### Can delete question if below 5 votes.
+##### Can edit question if no votes.
+##### Image .
 
 #### User can click on any question to go to that question's page; once on page, if logged in, they can:
 ##### Vote on question
