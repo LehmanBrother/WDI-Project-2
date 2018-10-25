@@ -14,7 +14,13 @@ const questionSchema = new mongoose.Schema({
 		type: String,
 		required: true
 	},
+	created_at: {
+		type: Date,
+		default: Date.now
+	},
+	voteCount: Number,
 	voteBalance: Number,
+	voteControversy: Number,
 	votes: [Vote.schema],
 	comments: [Comment.schema],
 	articles: [Article.schema]

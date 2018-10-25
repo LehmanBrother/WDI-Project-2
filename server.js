@@ -28,16 +28,59 @@ app.use(methodOverride('_method'));
 app.use(express.static('public'));
 
 //Controllers
-// app.use('/articles', articleController);
-// app.use('/comments', commentController);
 app.use('/questions', questionController);
 app.use('/users', userController);
 
-//home/index route
+//home/index route (default)
 app.get('/', async (req, res) => {
 	try {
 		req.session.message = undefined;
 		const allQuestions = await Question.find();
+		res.render('index.ejs', {
+			questions: allQuestions,
+			username: req.session.username,
+			message: req.session.message
+		})
+	} catch(err) {
+		res.send(err);
+	}
+});
+
+//home/index route (new)
+app.get('/new', async (req, res) => {
+	try {
+		req.session.message = undefined;
+		const allQuestions = await Question.find().sort({created_at: 'desc'});
+		res.render('index.ejs', {
+			questions: allQuestions,
+			username: req.session.username,
+			message: req.session.message
+		})
+	} catch(err) {
+		res.send(err);
+	}
+});
+
+//home/index route (popular)
+app.get('/popular', async (req, res) => {
+	try {
+		req.session.message = undefined;
+		const allQuestions = await Question.find().sort({voteCount: 'desc'});
+		res.render('index.ejs', {
+			questions: allQuestions,
+			username: req.session.username,
+			message: req.session.message
+		})
+	} catch(err) {
+		res.send(err);
+	}
+});
+
+//home/index route (controversial)
+app.get('/controversial', async (req, res) => {
+	try {
+		req.session.message = undefined;
+		const allQuestions = await Question.find().sort({voteControversy: 'desc'});
 		res.render('index.ejs', {
 			questions: allQuestions,
 			username: req.session.username,
@@ -93,6 +136,7 @@ app.post('/', async (req, res) => {
 				fullDesc: req.body.fullDesc,
 				img: req.body.img,
 				username: req.session.username,
+				voteCount: 1,
 				voteBalance: newVote.value
 			});
 			newQuestion.votes.push(newVote);

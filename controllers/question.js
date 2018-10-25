@@ -64,14 +64,39 @@ router.post('/:index/vote', async (req, res, next) => {
 					value: Number(req.body.vote)
 				});
 				currentQuestion.votes.push(newVote);
-				const voteCount = currentQuestion.votes.length;
+				currentQuestion.voteCount = currentQuestion.votes.length;
 				let voteSum = 0;
+				let oneCount = 0;
+				let twoCount = 0;
+				let threeCount = 0;
+				let fourCount = 0;
+				let fiveCount = 0;
 				for(let i = 0; i < currentQuestion.votes.length; i++) {
+					if(currentQuestion.votes[i].value === 1) {
+						oneCount++;
+					} else if(currentQuestion.votes[i].value === 2) {
+						twoCount++;
+					} else if(currentQuestion.votes[i].value === 3) {
+						threeCount++;
+					} else if(currentQuestion.votes[i].value === 4) {
+						fourCount++;
+					} else if(currentQuestion.votes[i].value === 5) {
+						fiveCount++;
+					}
 					voteSum += currentQuestion.votes[i].value;
 				}
-				currentQuestion.voteBalance = Math.round(100*voteSum/voteCount)/100;
+				currentQuestion.voteBalance = Math.round(100*voteSum/currentQuestion.voteCount)/100;
+				const voteVariance = (
+					Math.abs(5-currentQuestion.voteBalance)*fiveCount +
+					Math.abs(4-currentQuestion.voteBalance)*fourCount +
+					Math.abs(3-currentQuestion.voteBalance)*threeCount +
+					Math.abs(2-currentQuestion.voteBalance)*twoCount +
+					Math.abs(1-currentQuestion.voteBalance)*oneCount
+				)/currentQuestion.voteCount;
+				currentQuestion.voteControversy = Math.log(currentQuestion.voteCount)*voteVariance;
 				console.log(currentQuestion.votes);
 				console.log(currentQuestion.voteBalance);
+				console.log(currentQuestion.voteControversy);
 				await currentQuestion.save();
 				res.render('questions/show.ejs', {
 					question: currentQuestion,
