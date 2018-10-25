@@ -237,7 +237,11 @@ body {
 .chartControl {
 	text-align: center;
 }
-.chartContainer {
+
+.chartInnerContainer {
+	border: 3px solid darkslategray;
+	border-radius: 5px;
+	background-color: white;
 	height: 200px;
 	width: 200px;
 }
