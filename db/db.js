@@ -1,8 +1,10 @@
 const mongoose = require('mongoose');
 
+const mongoDbUrl = process.env.MONGODB_URI || 'mongodb://localhost/vote';
+
 const connectionString = 'mongodb://localhost/vote';
 
-mongoose.connect(connectionString, { useNewUrlParser: true});
+mongoose.connect(mongoDbUrl, { useNewUrlParser: true});
 
 mongoose.connection.on('connected', () => {
   console.log('Mongoose connected at ', connectionString);

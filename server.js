@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const PORT = process.env.PORT || 3000
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const session = require('express-session');
@@ -172,6 +173,6 @@ app.post('/', async (req, res) => {
 	}
 })
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
 	console.log('Server listening on port 3000');
 })
