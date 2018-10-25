@@ -224,6 +224,16 @@ body {
 	border-radius: 5px;
 }
 
+.editControl {
+	display: inline-block;
+	text-align: center;
+	color: white;
+	background-color: lightslategray;
+	padding: 10px 15px 10px 15px;
+	border: 3px solid darkslategray;
+	border-radius: 5px;
+}
+
 .chartControl {
 	text-align: center;
 }

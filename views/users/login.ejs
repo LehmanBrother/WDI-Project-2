@@ -1,18 +1,23 @@
 <% include ../partials/head %>
 <% include ../partials/header %>
 
-	<h1>Register</h1>
-	<form action="/users/register" method="POST">
-		Username: <input type="text" name="username"><br>
-		Password: <input type="password" name="password"><br>
-		<button type="submit">Register</button>
-	</form>
-
-	<h1>Login</h1>
-	<form action="/users/login" method="POST">
-		Username: <input type="text" name="username"><br>
-		Password: <input type="password" name="password"><br>
-		<button type="submit">Login</button>
-	</form>
+	<div id="editMain">
+		<div class="editControl">
+			<h1>Register</h1>
+			<form action="/users/register" method="POST">
+				Username: <input type="text" name="username"><br><br>
+				Password: <input type="password" name="password"><br><br>
+				<button type="submit">Register</button>
+			</form>
+		</div>
+		<div class="editControl">
+			<h1>Login</h1>
+			<form action="/users/login" method="POST">
+				Username: <input type="text" name="username"><br><br>
+				Password: <input type="password" name="password"><br><br>
+				<button type="submit">Login</button>
+			</form>
+		</div>
+	</div>
 </body>
 </html>
