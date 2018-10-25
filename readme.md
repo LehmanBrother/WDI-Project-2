@@ -1,40 +1,90 @@
-# Website Name #
+# Website Name 
+___
+## Original Wire Frame
 
-##### Original Wire Frame #####
+###### Home Page:
 ![Imgur](https://i.imgur.com/KJkH9PT.png)
+###### Question/Issue Show Page:
 ![Imgur](https://i.imgur.com/dQGmyT8.png)
+###### Question/Issue Creation:
 ![Imgur](https://i.imgur.com/wjsllXh.png)
+###### Comment Creation:
 ![Imgur](https://i.imgur.com/T0pPU6A.png)
+###### Article Creation:
 ![Imgur](https://i.imgur.com/UAsQ2Sa.png)
+___
+## Actual Website
 
-### Actual Website ###
+###### Home Page:
+![Imgur](https://i.imgur.com/O7F19b1.png)
+###### Question/Issue Show Page:
+![Imgur](https://i.imgur.com/VP3vFLi.png)
+###### Question/Issue Creation:
+![Imgur](https://i.imgur.com/940f7zX.png)
+###### Comment Creation:
+![Imgur](https://i.imgur.com/Y8YKIHT.png)
+###### Article Creation:
+![Imgur](https://i.imgur.com/qOm2fuH.png)
 
+___
 ## MVP: ##
 
-#### -User enters at home page; can sign up/log in, view list of questions
-	-If logged in, they can add a question
-		-Description
-		-Category (e.g. election, ballot q, general issue)
-		-Can delete question if below 5 votes
-		-Can edit question if no votes
-		-Image 
+### User enters at home page; can sign up/log in, view list of questions.
+___
+### If logged in: 
 
-#### -User can click on any question to go to that question's page; once on page, if logged in, they can:
-	-Vote on question
-	-Add comment (takes them to comment creation page)
-	-Add article (takes them to article post page)
-	-Delete their own comments and articles
+#### Can Do:
 
-####-Visualization
-Vote balance
+##### Click and view any question/issue that has been posted
 
+##### Add a question/issue with a short and long description, relevant image, and initial vote (takes them to the question/issue creation page)
+
+##### Add a comment to a previously posted question or their own (takes them to the comment creation page)
+
+##### Add an article to a previously posted question or their own (takes them to the article creation page)
+
+##### Vote on a question that has been posted by another user
+
+##### Delete a question that they posted (deletes all votes, comments, and articles from the database related to this question)
+
+##### Delete a comment that they posted (deletes the comment from the question/issue and user and removes it from the database)
+
+##### Delete an article that they posted (deletes the article from the question/issue and the user and removes it from the database)
+
+
+
+#### Can't Do:
+
+##### Cannot delete a question that they did not post
+
+##### Cannot delete a comment that they did not post
+
+##### Cannot delete an article that they did not post
+
+##### Cannot vote more than once on a question/issue post 
+
+___
+#### -Visualization
+
+##### Vote balance (an average of all vote values from 1 to 5 that are specific to the question/issue)
+
+___
 ## Post-MVP: ##
--Sort home page articles by new/popular/controversial
--User show page w/their questions, comments, articles
--Users need reputation to...do stuff?
--Users can vote on articles/comments
--Users can vote on validity of question, which could affect whether question remains
--Graphs of user opinions on each question page
--D3 stuff for visualization
--Ability to drag images instead of pasting links
--Use Ballotpedia API if available
+
+##### Sort home page articles by new/popular/controversial (completed!)
+
+##### Graphs of user opinions on each question page (completed!)
+
+##### Use Ballotpedia API if available (not available...)
+
+##### User show page w/their questions, comments, articles
+
+##### Users need reputation to...do stuff?
+
+##### Users can vote on articles/comments
+
+##### Users can vote on validity of question, which could affect whether question remains
+
+##### D3 stuff for visualization
+
+##### Ability to drag images instead of pasting links
