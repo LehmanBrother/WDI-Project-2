@@ -1,4 +1,6 @@
-# Website Name 
+# OpinionMeter
+
+#### Please use this link to visit the site: https://opinionmeter.herokuapp.com/ 
 ___
 ## Original Wire Frame
 
@@ -88,3 +90,7 @@ ___
 ##### D3 stuff for visualization
 
 ##### Ability to drag images instead of pasting links
+
+
+# Technology Used:
+#### HTML/CSS, JavaScript, Express, MongoDB, Mongoose, and Chart.js, 
