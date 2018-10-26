@@ -97,6 +97,7 @@ body {
 }
 
 #questionTop {
+	width: 500px;
 	display: inline-block;
 	color: white;
 	background-color: lightslategray;
