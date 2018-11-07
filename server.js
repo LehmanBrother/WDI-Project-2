@@ -30,7 +30,22 @@ app.use(express.static('public'));
 // app.use('/articles', articleController);
 // app.use('/comments', commentController);
 app.use('/questions', questionController);
-// app.use('/users', userController);
+app.use('/users', userController);
+
+// Login Get Route
+app.get('/login', (req, res) => {
+	res.render('user/login.ejs')
+})
+
+// post route
+app.post('/', async(req, res) => {
+	try {
+		const createdQuestion = await Question.create(req.body)
+		res.redirect('/');
+	} catch(err) {
+		res.send(err)
+	}
+})
 
 //home/index route
 app.get('/', async (req, res) => {
@@ -45,7 +60,7 @@ app.get('/', async (req, res) => {
 });
 
 //new question route
-app.get('/questions/new', async (req, res) => {
+app.get('/questions/new', (req, res) => {
 	res.render('questions/new.ejs');
 })
 
