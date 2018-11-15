@@ -1,6 +1,7 @@
 <% include ../partials/head %>
 <% include ../partials/header %>
 
+<<<<<<< HEAD
 <h1><%=question.briefDesc%></h1>
 
 <h4><%=question.fullDesc%></h4>
@@ -26,3 +27,141 @@
 
 
 
+=======
+	<div id="showMain">
+		<%if(question.img) {%>
+			<img class="showImg" src="<%=question.img%>"></img><br>
+		<%}%>
+		<div id="questionTop">
+
+			<h1 id="briefDesc"><%=question.briefDesc%></h1>
+
+			<h2>Vote Balance: <%=question.voteBalance%></h2>
+
+			<p id="fullDesc"><%=question.fullDesc%></p>
+
+			<div class="chartInnerContainer">
+				<canvas id="myChart" height="100" width="100"></canvas>
+				<script>
+				var ctx = document.getElementById("myChart");
+				var myChart = new Chart(ctx, {
+				    type: 'bar',
+				    data: {
+				        labels: ['S.D.', 'D', 'N', 'A', 'S.A.'],
+				        datasets: [{
+				            label: 'Votes',
+
+				            data: [<%=votes[0]%>, <%=votes[1]%>, <%=votes[2]%>, <%=votes[3]%>, <%=votes[4]%>],
+				            backgroundColor: [
+				                'red',
+				                'orange',
+				                'gray',
+				                'lightgreen',
+				                'green'
+				            ],
+				            borderColor: [
+				                'darkslategray',
+				                'darkslategray',
+				                'darkslategray',
+				                'darkslategray',
+				                'darkslategray'
+				            ],
+				            borderWidth: 1
+				        }]
+				    },
+				    options: {
+				    	legend: {
+				    		display: false,
+				    		fontColor: 'green'
+				    	},
+				    	responsive: true,
+				    	maintainAspectRatio: false,
+				        scales: {
+				            yAxes: [{
+				                ticks: {
+				                    beginAtZero:true,
+				                    stepSize: 1
+				                }
+				            }]
+				        }
+				    }
+				});
+				</script>
+			</div>
+			<br>
+			<%if(username===question.username) {%>
+				<form action="/questions/<%=question.id%>?_method=DELETE" method="POST">
+					<input type="submit" value="Delete Question">
+				</form>
+			<%}%>
+		</div><br><br>
+	<br>
+		<form id="voteForm" action="/questions/<%=question.id%>/vote" method="POST">
+			<span id="labels">
+				<span class="label" for="1">Strongly Disagree</span>
+				<span class="label" for="2">Somewhat Disagree</span>
+				<span class="label" for="3">Neutral</span>
+				<span class="label" for="4">Somewhat Agree</span>
+				<span class="label" for="5">Strongly<br> Agree</span><br>
+			</span>
+			<span id="radio">
+				<input type="radio" name="vote" value="1">
+				<input type="radio" name="vote" value="2">
+				<input type="radio" name="vote" value="3">
+				<input type="radio" name="vote" value="4">
+				<input type="radio" name="vote" value="5">
+			</span>
+			<br>
+			<button type="submit">Vote on Topic</button>
+		</form><br><br>
+	</div>
+
+	<div id="commentsArticles">
+		<div id="articlesDiv">
+			<div id="articleButton">
+				<a href="/questions/<%=question.id%>/article" class="buttonMed">Add an Article</a>
+			</div>
+			<div id="articleList">
+				<% for (let i = 0; i < question.articles.length; i++) { -%>
+					<div class="articleDiv">
+						<div class="article">
+							<a href="<%=question.articles[i].articleLink%>"><%=question.articles[i].title%></a>
+						</div>
+						<div class="editDelete">
+							<%if(username===question.articles[i].username) {%>
+								<a href="/questions/<%=question.id%>/article/<%=question.articles[i].id%>/edit">Edit Article</a>
+								<form action="/questions/<%=question.id%>/article/<%=question.articles[i].id%>?_method=DELETE" method="POST">
+									<input type="submit" value="Delete Article">
+								</form>
+							<%}%>
+						</div>
+					</div>
+				<% } -%>
+			</div>
+		</div>
+		<div id="commentsDiv">
+			<div id="commentButton">
+				<a href="/questions/<%=question.id%>/comment" class="buttonMed">Add a Comment</a>
+			</div>
+			<div id="commentList">
+				<% for (let i = 0; i < question.comments.length; i++) { -%>
+					<div class="commentDiv">
+						<div class="comment">
+							<%=question.comments[i].body%>
+						</div>
+						<div class="editDelete">
+							<%if(username===question.comments[i].username) {%>
+								<a href="/questions/<%=question.id%>/comment/<%=question.comments[i].id%>/edit">Edit Comment</a>
+								<form action="/questions/<%=question.id%>/comment/<%=question.comments[i].id%>?_method=DELETE" method="POST">
+									<input type="submit" value="Delete Comment">
+								</form>
+							<%}%>
+						</div>
+					</div>
+				<% } -%>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+>>>>>>> f31acfbca80247215f49c9d1099eae1493bc61b5

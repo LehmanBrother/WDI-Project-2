@@ -1,0 +1,15 @@
+<% include ../partials/head %>
+<% include ../partials/header %>
+	<div id="editMain">
+		<div id="editControl">
+			<span>
+				<%=question.briefDesc%><br><br>
+				<%=question.fullDesc%><br>
+			</span><br>
+			<form action="/questions/<%=question.id%>/article" method="POST">
+				Article Title: <input type="text" name="title"><br><br>
+				Article Link: <input type="text" name="article" placeholder="add url"><br><br>
+				<button type="submit">Add Article</button>
+			</form>
+		</div>
+	</div>

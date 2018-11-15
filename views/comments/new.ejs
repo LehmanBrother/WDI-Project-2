@@ -1,5 +1,6 @@
 <% include ../partials/head %>
 <% include ../partials/header %>
+<<<<<<< HEAD
 	<span>
 		<%=question.fullDesc%>
 	</span><br>
@@ -7,3 +8,17 @@
 		<input type="text" name="comment" placeholder="Comment here"><br>
 		<button type="submit">Create Comment</button>
 	</form>
+=======
+	<div id="editMain">
+		<div id="editControl">
+			<span>
+				<%=question.briefDesc%><br><br>
+				<%=question.fullDesc%><br>
+			</span><br>
+			<form action="/questions/<%=question.id%>/comment" method="POST">
+				<textarea type="text" name="comment" placeholder="Comment Here"></textarea><br><br>
+				<button type="submit">Create Comment</button>
+			</form>
+		</div>
+	</div>
+>>>>>>> f31acfbca80247215f49c9d1099eae1493bc61b5

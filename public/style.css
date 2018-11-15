@@ -8,13 +8,13 @@ body {
 }
 
 #headerLeft {
-	height: 150px;
+	height: 100px;
 	width: 40%;
 	padding: 10px;
 }
 
 #headerRight {
-	height: 150px;
+	height: 100px;
 	width: 40%;
 	display: flex;
 	justify-content: flex-end;
@@ -40,12 +40,93 @@ body {
 	border-radius: 5px;
 }
 
+.buttonMed {
+	background-color: mediumseagreen;
+	color: white;
+	font-size: 20px;
+	text-decoration: none;
+	padding: 5px;
+	border: 3px solid darkslategray;
+	border-radius: 5px;
+}
+
+#sortSelect {
+	text-align: right;
+}
+
+#indexMain {
+	background-color: lightslategray;
+	padding: 2px;
+	border: 3px solid darkslategray;
+	border-radius: 5px;
+}
+
+.indexEntry {
+	display: flex;
+	height: 50px;
+	background-color: lightgray;
+	border-radius: 2px;
+	margin: 3px 3px 0px 3px;
+}
+
+.indexImgDiv {
+	flex-basis: 17%;
+	padding: 3px;
+	border: 2px solid darkslategray;
+}
+
+.indexImg {
+	height: 40px;
+	width: auto;
+}
+
+.indexQuestion {
+	flex-basis: 66%;
+	padding: 5px;
+	border: 2px solid darkslategray;
+}
+
+.indexVoteDiv {
+	flex-basis: 17%;
+	padding: 5px;
+	border: 2px solid darkslategray;
+}
+
+#showMain {
+	text-align: center;
+}
+
+#questionTop {
+	width: 500px;
+	display: inline-block;
+	color: white;
+	background-color: lightslategray;
+	padding: 0px 15px 10px 15px;
+	border: 3px solid darkslategray;
+	border-radius: 5px;
+}
+
+.showImg {
+	height: 200px;
+	width: auto;
+	border: 3px solid darkslategray;
+	border-radius: 5px;
+}
+
+#voteForm {
+	display: inline-block;
+}
+
 #labels {
 	width: 500px;
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
-	border: 1px solid red;
+	background-color: darkorange;
+	border: 3px solid darkslategray;
+	border-bottom: none;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
 }
 
 .label {
@@ -57,5 +138,113 @@ body {
 	width: 500px;
 	display: flex;
 	justify-content: space-around;
-	border: 1px solid red;
+	background-color: chocolate;
+	border: 3px solid darkslategray;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+#commentsArticles {
+	display: flex;
+	justify-content: space-around;
+	padding: 8px;
+}
+
+#articlesDiv {
+	width: 48%;
+	background-color: lightslategray;
+	padding: 2px;
+	border: 3px solid darkslategray;
+	border-radius: 5px;
+}
+
+#commentsDiv {
+	width: 48%;
+	background-color: lightslategray;
+	padding: 2px;
+	border: 3px solid darkslategray;
+	border-radius: 5px;
+}
+
+#articleButton {
+	padding: 8px;
+}
+
+#commentButton {
+	padding: 8px;
+}
+
+.articleDiv {
+	height: 50px;
+	display: flex;
+	justify-content: space-between;
+	background-color: lightgray;
+	padding: 2px;
+	border: 2px solid darkslategray;
+	border-radius: 2px;
+	margin: 3px 3px 0px 3px;
+}
+
+.commentDiv {
+	height: 50px;
+	display: flex;
+	justify-content: space-between;
+	background-color: lightgray;
+	padding: 2px;
+	border: 2px solid darkslategray;
+	border-radius: 2px;
+	margin: 3px 3px 0px 3px;
+}
+
+.article {
+	display: inline-block;
+	justify-content: flex-start;
+}
+
+.comment {
+	display: inline-block;
+	justify-content: flex-start;
+}
+
+.editDelete {
+	width: 30%;
+	text-align: right;
+}
+
+#editMain {
+	text-align: center;
+}
+
+#editControl {
+	display: inline-block;
+	text-align: center;
+	color: white;
+	background-color: lightslategray;
+	padding: 10px 15px 10px 15px;
+	border: 3px solid darkslategray;
+	border-radius: 5px;
+}
+
+.editControl {
+	display: inline-block;
+	text-align: center;
+	color: white;
+	background-color: lightslategray;
+	padding: 10px 15px 10px 15px;
+	border: 3px solid darkslategray;
+	border-radius: 5px;
+}
+
+.chartControl {
+	text-align: center;
+}
+
+.chartInnerContainer {
+	text-align: center;
+	border: 3px solid darkslategray;
+	border-radius: 5px;
+	background-color: white;
+	height: 200px;
+	width: 98%;
+	border: 2px solid darkslategray;
 }

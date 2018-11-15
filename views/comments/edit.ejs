@@ -1,0 +1,14 @@
+<% include ../partials/head %>
+<% include ../partials/header %>
+	<div id="editMain">
+		<div id="editControl">
+			<span>
+				<%=question.briefDesc%><br><br>
+				<%=question.fullDesc%><br>
+			</span><br>
+			<form action="/questions/<%=question.id%>/comment/<%=comment.id%>?_method=PUT" method="POST">
+				<textarea type="text" name="comment"><%=comment.body%></textarea><br><br>
+				<button type="submit">Edit Comment</button>
+			</form>
+		</div>
+	</div>

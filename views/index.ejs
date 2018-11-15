@@ -1,10 +1,41 @@
 <% include ./partials/head %>
 <% include ./partials/header %>
-	<ul>
+	<%if(message) {%>
+		<br><br><br>
+	<%}%>
+	<div id="sortSelect">
+		<select onchange="location=this.options[this.selectedIndex].value;">
+			<option>Sort assertions:</option>
+			<option value="/new">New</option>
+			<option value="/popular">Popular</option>
+			<option value="/controversial">Controversial</option>
+		</select>
+	</div><br>
+	<div id="indexMain">
 		<% for (let i = 0; i < questions.length; i++) { -%>
-			<li><a href="/questions/<%=questions[i].id%>"><%=questions[i].briefDesc%></a></li>
+			<div class="indexEntry">
+				<div class="indexImgDiv">
+					<img class="indexImg" src="<%=questions[i].img%>">
+				</div>
+				<div class="indexQuestion">
+					<a href="/questions/<%=questions[i].id%>"><%=questions[i].briefDesc%></a></li>
+				</div>
+				<div class="indexVoteDiv">
+					<%if(questions[i].voteBalance) {%>
+						Vote Balance: <%=questions[i].voteBalance%>
+					<%} else {%>
+						No Votes Yet
+					<%}%>
+				</div>
+			</div>
 		<% } -%>
-	</ul>
-	<a href="/questions/new">Add New Question</a>
+	</div>
+	<br>
+	<br>
+	<a href="/questions/new" class="buttonMed">
+		<span>
+			Add New Assertion
+		</span>
+	</a>
 </body>
 </html>
