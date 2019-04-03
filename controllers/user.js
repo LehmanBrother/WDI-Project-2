@@ -34,12 +34,10 @@ router.post('/register', async (req, res) => {
 	//will need to implement logic here to make sure username is unique...maybe already accomplished by user model, but will still need message
 	const password = req.body.password;
 	const passwordHash = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
-	console.log(passwordHash);
 	const userEntry = {};
 	userEntry.username = req.body.username;
 	userEntry.password = passwordHash;
 	const user = await User.create(userEntry);
-	console.log(user);
 	req.session.username = req.body.username;
 	req.session.logged = true;
 	req.session.message = undefined;

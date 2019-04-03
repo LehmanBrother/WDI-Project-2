@@ -109,10 +109,7 @@ app.get('/controversial', async (req, res) => {
 });
 
 //new question route
-<<<<<<< HEAD
-app.get('/questions/new', (req, res) => {
-	res.render('questions/new.ejs');
-=======
+
 app.get('/questions/new', async (req, res) => {
 	if(req.session.logged) {
 		req.session.message = undefined;
